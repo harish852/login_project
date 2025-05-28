@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <h2>OTP Verification</h2>
+        <form method="POST" class="form">
+            <label for="otp">Enter OTP:</label>
+            <input id="otp" type="text" name="otp" required>
+
+            <button type="submit" class="btn">Verify OTP</button>
+        </form>
+
+        {% if message %}
+            <div class="message {{ 'success' if success else 'error' }}">
+                {{ message }}
+            </div>
+        {% endif %}
+
+        {% if error %}
+    <div class="message error">
+        {{ error }}
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{{ url_for('signup') }}" style="color: #00f; text-decoration: underline; font-weight: 500;">← Back to Signup</a>
+    </div>
+{% endif %}
+
+        <p><a href="{{ url_for('signup') }}">Back to Signup</a></p>
+
+    </div>
+</body>
+</html>

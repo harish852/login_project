@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <h2>Signup Page</h2>
+        <form method="post" class="form">
+            <label for="name">Name:</label>
+            <input id="name" type="text" name="name" required>
+
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password" required>
+
+            <button type="submit" class="btn">Send OTP</button>
+        </form>
+
+        {% if message %}
+            <div class="message {{ 'success' if success else 'error' }}">
+                {{ message }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

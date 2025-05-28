@@ -1,0 +1,171 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body Background */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+}
+
+/* Main Container */
+.container, .card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+/* Headings */
+.card h2, .container h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #fff;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  transition: background 0.3s ease;
+}
+
+input:focus {
+    background-color: rgba(255, 255, 255, 0.3); /* More contrast */
+    color: #fff;
+    caret-color: #fff; /* Makes cursor white and visible */
+    outline: 2px solid #6e8efb; /* Optional blue border */
+}
+
+
+/* Buttons */
+button,
+input[type="submit"] {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background: linear-gradient(135deg, #a777e3, #6e8efb);
+    transform: scale(1.05);
+}
+
+/* Links */
+a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #dddddd;
+    text-decoration: underline;
+}
+
+/* Additional Link Area */
+.links {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* Message Boxes */
+.message {
+    margin-top: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Success and Error Message Styling */
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Action Buttons Wrapper */
+.actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Media Query */
+@media (max-width: 480px) {
+    .container, .card {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+label {
+  margin-bottom: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff; /* bright white */
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
+  transition: color 0.3s ease;
+}
+
+input:focus + label,
+label:focus {
+  color: #a8d8ff; /* soft blue highlight */
+}

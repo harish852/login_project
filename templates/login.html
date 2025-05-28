@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Stylish App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <h2>Login</h2>
+
+
+        <form method="POST" action="/login">
+            <div class="input-group">
+                <label for="name">Username</label>
+                <input type="text" id="name" name="name" placeholder="Enter your username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <input type="submit" value="Login" class="btn">
+        </form>
+        {% if message %}
+            <div class="message {% if success %}success{% else %}error{% endif %}">
+                {{ message }}
+            </div>
+        {% endif %}
+
+        <div class="links">
+            <a href="/signup">Don't have an account? Sign up</a><br>
+            <a href="/reset-password">Forgot password?</a>
+        </div>
+    </div>
+</body>
+</html>

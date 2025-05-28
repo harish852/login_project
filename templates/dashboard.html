@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <h2>Welcome, {{ user.name }}!</h2>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+
+        <div class="actions">
+            <a href="/profile" class="btn">View Profile</a>
+            <form action="/logout" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
