@@ -10,6 +10,12 @@
         <h2>Welcome, {{ user.name }}!</h2>
         <p><strong>Email:</strong> {{ user.email }}</p>
 
+        {% if user.image_path %}
+            <img src="{{ url_for('static', filename=user.image_path) }}" alt="Profile Picture" width="150" style="border-radius: 50%; margin-bottom: 15px;">
+        {% else %}
+            <p>No profile image uploaded.</p>
+        {% endif %}
+
         <div class="actions">
             <a href="/profile" class="btn">View Profile</a>
             <form action="/logout" method="post" style="display: inline;">

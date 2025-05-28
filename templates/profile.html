@@ -8,6 +8,13 @@
 <body>
     <div class="card">
         <h2>User Profile</h2>
+
+        {% if user.image_path %}
+            <img src="{{ url_for('static', filename=user.image_path) }}" alt="Profile Picture" width="150" style="border-radius: 50%; margin-bottom: 15px;">
+        {% else %}
+            <p>No profile image uploaded.</p>
+        {% endif %}
+
         <p><strong>Name:</strong> {{ user.name }}</p>
         <p><strong>Email:</strong> {{ user.email }}</p>
 

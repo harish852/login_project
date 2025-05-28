@@ -58,7 +58,7 @@ input[type="number"] {
 }
 
 input:focus {
-    background-color: rgba(255, 255, 255, 0.3); /* More contrast */
+    background-color: rgba(255, 255, 255, 0.3);
     color: #fff;
     caret-color: #fff; /* Makes cursor white and visible */
     outline: 2px solid #6e8efb; /* Optional blue border */

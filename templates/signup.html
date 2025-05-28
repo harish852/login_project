@@ -7,7 +7,8 @@
 <body>
     <div class="card">
         <h2>Signup Page</h2>
-        <form method="post" class="form">
+        <!-- Add enctype for file upload -->
+        <form method="post" enctype="multipart/form-data" class="form">
             <label for="name">Name:</label>
             <input id="name" type="text" name="name" required>
 
@@ -16,6 +17,10 @@
 
             <label for="password">Password:</label>
             <input id="password" type="password" name="password" required>
+
+            <!-- 🔽 New file input for image upload -->
+            <label for="image">Profile Image:</label>
+            <input id="image" type="file" name="image" accept="image/*" required>
 
             <button type="submit" class="btn">Send OTP</button>
         </form>
