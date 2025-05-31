@@ -16,7 +16,7 @@ try:
         connect_timeout=5
     )
     cursor = connection.cursor()
-    print("Creating database if not exists...")
+    print("Creating database if not exists")
     cursor.execute("CREATE DATABASE IF NOT EXISTS login_details")
     connection.commit()
     print(" Database setup done.")
@@ -45,17 +45,17 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-def send_email_otp(recipient_email, otp):
+def send_email_otp(r_email, otp):
     sender_email = "harishjeeva71@gmail.com"
     sender_password = "cxbn omnm actf jwzl"
 
     subject = "Your OTP Verification Code"
     body = f"Your OTP is: {otp}"
 
-    # Compose message
+    # message cpmposing
     msg = MIMEMultipart()
     msg["From"] = sender_email
-    msg["To"] = recipient_email
+    msg["To"] = r_email
     msg["Subject"] = subject
 
     msg.attach(MIMEText(body, "plain"))
@@ -64,7 +64,7 @@ def send_email_otp(recipient_email, otp):
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
         server.login(sender_email, sender_password)
-        server.sendmail(sender_email, recipient_email, msg.as_string())
+        server.sendmail(sender_email, r_email, msg.as_string())
         server.quit()
         return True
     except Exception as e:
@@ -98,7 +98,7 @@ def signup():
             image.save(os.path.join('static/uploads', image_filename))
             session['image_path'] = f"uploads/{image_filename}"
 
-        # Check if the username already exists BEFORE sending OTP
+        # to checking if the username already exists before sending OTP
         try:
             db = pymysql.connect(
                 host="localhost",
@@ -108,7 +108,7 @@ def signup():
                 database="login_details"
             )
             cur = db.cursor()
-            cur.execute("SELECT * FROM emp_details WHERE name = %s", (name,))
+            cur.execute("select * from emp_details where name = %s", (name,))
             existing_user = cur.fetchone()
             cur.close()
             db.close()
@@ -161,15 +161,15 @@ def otp():
                 )
                 cur = db.cursor()
                 cur.execute("""
-                    CREATE TABLE IF NOT EXISTS emp_details (
-                        name VARCHAR(50) not null unique,
-                        email VARCHAR(100) not null,
-                        password VARCHAR(255),
-                        image_path VARCHAR(255)
+                    create table ifnot exists emp_details (
+                        name varchar(50) not null unique,
+                        email varchar(100) not null,
+                        password varchar(255),
+                        image_path varchar(255)
                     )
                 """)
                 print(f"Inserting user: {session['name']}, {session['email']}")
-                cur.execute("INSERT INTO emp_details (name, email, password,image_path) VALUES (%s, %s, %s, %s)",
+                cur.execute("insert into emp_details (name, email, password,image_path) values (%s, %s, %s, %s)",
                             (session['name'], session['email'], session['password'], session.get('image_path')))
                 db.commit()
                 print("User inserted successfully.")
@@ -210,14 +210,14 @@ def login():
                 database="login_details"
             )
             cur = db.cursor()
-            cur.execute("SELECT name,email,password, image_path FROM emp_details WHERE name = %s", (name,))
+            cur.execute("select name,email,password, image_path from emp_details where name = %s", (name,))
             result = cur.fetchone()
             cur.close()
             db.close()
 
             if result:
                 db_name, db_email, db_password, image_path = result
-                # db_password = result[0]
+
                 if password == db_password:
                     session['user'] = {'name': db_name, 'email': db_email, 'image_path': image_path}
                     return render_template('dashboard.html', user=session['user'])
@@ -259,11 +259,11 @@ def reset_password():
                 database="login_details"
             )
             cur = db.cursor()
-            cur.execute("SELECT * FROM emp_details WHERE name = %s AND email = %s", (name, email))
+            cur.execute("select * from emp_details where name = %s and email = %s", (name, email))
             result = cur.fetchone()
 
             if result:
-                cur.execute("UPDATE emp_details SET password = %s WHERE name = %s AND email = %s",
+                cur.execute("update emp_details set password = %s WHERE name = %s AND email = %s",
                             (new_password, name, email))
                 db.commit()
                 message = 'Password reset successfully.'
